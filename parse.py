@@ -1,5 +1,7 @@
-import json
-with open("all_asheville_matches.json", "r") as f:
+import json, sys
+event = sys.argv[1]
+print(event)
+with open("all_"+event+"_matches.json", "r") as f:
     data = json.load(f)
 
 class TeamStats:
@@ -101,5 +103,5 @@ for team in teams:
     stats = teams[team].get_avg_stats()
     csv += team + "," + str(stats.auto_points) + "," + str(stats.teleop_non_endgame_points) + "," + str(stats.endgame_points) + "," + str(stats.upper_hub_cargo) + "," + str(stats.lower_hub_cargo) + "," + str(stats.team_climb) + "," + str(defense_bots[team]) + "," + str(stats.win_percent) + "\n"
 
-with open("all_asheville_teams.csv", "w") as f:
+with open("all_"+event+"_teams.csv", "w") as f:
     f.write(csv)
